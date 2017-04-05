@@ -35,10 +35,19 @@
 			this.tellDependablility1Button = new System.Windows.Forms.Button();
 			this.equipSwitchButton1 = new System.Windows.Forms.Button();
 			this.equipSwitchButton2 = new System.Windows.Forms.Button();
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.lable1 = new System.Windows.Forms.Label();
+			this.textBoxCityNum = new System.Windows.Forms.TextBox();
+			this.textBoxLineNum = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+			this.splitContainer2.Panel1.SuspendLayout();
+			this.splitContainer2.Panel2.SuspendLayout();
+			this.splitContainer2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
@@ -56,12 +65,13 @@
 			// 
 			this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.splitContainer1.Size = new System.Drawing.Size(637, 468);
-			this.splitContainer1.SplitterDistance = 205;
+			this.splitContainer1.SplitterDistance = 210;
 			this.splitContainer1.TabIndex = 0;
 			// 
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
+			this.flowLayoutPanel1.Controls.Add(this.splitContainer2);
 			this.flowLayoutPanel1.Controls.Add(this.startGenerateButton);
 			this.flowLayoutPanel1.Controls.Add(this.generateNetwork2Button);
 			this.flowLayoutPanel1.Controls.Add(this.tellDependablility1Button);
@@ -76,17 +86,17 @@
 			// 
 			// startGenerateButton
 			// 
-			this.startGenerateButton.Location = new System.Drawing.Point(3, 3);
+			this.startGenerateButton.Location = new System.Drawing.Point(3, 78);
 			this.startGenerateButton.Name = "startGenerateButton";
-			this.startGenerateButton.Size = new System.Drawing.Size(180, 126);
+			this.startGenerateButton.Size = new System.Drawing.Size(180, 78);
 			this.startGenerateButton.TabIndex = 0;
-			this.startGenerateButton.Text = "输入数据\r\n以生成网络①";
+			this.startGenerateButton.Text = "生成网络①";
 			this.startGenerateButton.UseVisualStyleBackColor = true;
 			this.startGenerateButton.Click += new System.EventHandler(this.startGenerateButton_Click);
 			// 
 			// generateNetwork2Button
 			// 
-			this.generateNetwork2Button.Location = new System.Drawing.Point(3, 135);
+			this.generateNetwork2Button.Location = new System.Drawing.Point(3, 162);
 			this.generateNetwork2Button.Name = "generateNetwork2Button";
 			this.generateNetwork2Button.Size = new System.Drawing.Size(180, 54);
 			this.generateNetwork2Button.TabIndex = 2;
@@ -96,7 +106,7 @@
 			// 
 			// tellDependablility1Button
 			// 
-			this.tellDependablility1Button.Location = new System.Drawing.Point(3, 195);
+			this.tellDependablility1Button.Location = new System.Drawing.Point(3, 222);
 			this.tellDependablility1Button.Name = "tellDependablility1Button";
 			this.tellDependablility1Button.Size = new System.Drawing.Size(180, 54);
 			this.tellDependablility1Button.TabIndex = 1;
@@ -106,7 +116,7 @@
 			// 
 			// equipSwitchButton1
 			// 
-			this.equipSwitchButton1.Location = new System.Drawing.Point(3, 255);
+			this.equipSwitchButton1.Location = new System.Drawing.Point(3, 282);
 			this.equipSwitchButton1.Name = "equipSwitchButton1";
 			this.equipSwitchButton1.Size = new System.Drawing.Size(180, 54);
 			this.equipSwitchButton1.TabIndex = 3;
@@ -116,13 +126,66 @@
 			// 
 			// equipSwitchButton2
 			// 
-			this.equipSwitchButton2.Location = new System.Drawing.Point(3, 315);
+			this.equipSwitchButton2.Location = new System.Drawing.Point(3, 342);
 			this.equipSwitchButton2.Name = "equipSwitchButton2";
 			this.equipSwitchButton2.Size = new System.Drawing.Size(180, 54);
 			this.equipSwitchButton2.TabIndex = 4;
 			this.equipSwitchButton2.Text = "为②配备交换机";
 			this.equipSwitchButton2.UseVisualStyleBackColor = true;
 			this.equipSwitchButton2.Click += new System.EventHandler(this.equipSwitchButton2_Click);
+			// 
+			// splitContainer2
+			// 
+			this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+			this.splitContainer2.Name = "splitContainer2";
+			this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			// 
+			// splitContainer2.Panel1
+			// 
+			this.splitContainer2.Panel1.Controls.Add(this.label2);
+			this.splitContainer2.Panel1.Controls.Add(this.lable1);
+			this.splitContainer2.Panel1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.splitContainer2.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel1_Paint);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this.splitContainer2.Panel2.Controls.Add(this.textBoxLineNum);
+			this.splitContainer2.Panel2.Controls.Add(this.textBoxCityNum);
+			this.splitContainer2.Size = new System.Drawing.Size(180, 69);
+			this.splitContainer2.SplitterDistance = 27;
+			this.splitContainer2.TabIndex = 5;
+			// 
+			// lable1
+			// 
+			this.lable1.AutoSize = true;
+			this.lable1.Location = new System.Drawing.Point(3, 0);
+			this.lable1.Name = "lable1";
+			this.lable1.Size = new System.Drawing.Size(65, 20);
+			this.lable1.TabIndex = 0;
+			this.lable1.Text = "城市数：";
+			// 
+			// textBoxCityNum
+			// 
+			this.textBoxCityNum.Location = new System.Drawing.Point(3, 3);
+			this.textBoxCityNum.Name = "textBoxCityNum";
+			this.textBoxCityNum.Size = new System.Drawing.Size(76, 29);
+			this.textBoxCityNum.TabIndex = 0;
+			// 
+			// textBoxLineNum
+			// 
+			this.textBoxLineNum.Location = new System.Drawing.Point(101, 3);
+			this.textBoxLineNum.Name = "textBoxLineNum";
+			this.textBoxLineNum.Size = new System.Drawing.Size(76, 29);
+			this.textBoxLineNum.TabIndex = 1;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(97, 0);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(65, 20);
+			this.label2.TabIndex = 1;
+			this.label2.Text = "线路数：";
 			// 
 			// Form1
 			// 
@@ -138,6 +201,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
+			this.splitContainer2.Panel1.ResumeLayout(false);
+			this.splitContainer2.Panel1.PerformLayout();
+			this.splitContainer2.Panel2.ResumeLayout(false);
+			this.splitContainer2.Panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+			this.splitContainer2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -151,6 +220,11 @@
         private System.Windows.Forms.Button startGenerateButton;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button equipSwitchButton2;
-    }
+		private System.Windows.Forms.SplitContainer splitContainer2;
+		private System.Windows.Forms.Label lable1;
+		private System.Windows.Forms.TextBox textBoxLineNum;
+		private System.Windows.Forms.TextBox textBoxCityNum;
+		private System.Windows.Forms.Label label2;
+	}
 }
 

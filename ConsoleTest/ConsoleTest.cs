@@ -12,18 +12,30 @@ namespace ConsoleTest
 		static void Main(string[] args)
 		{
 			TestInitNetwork();
-
 			Console.ReadKey();
 		}
 
 		static void TestInitNetwork()
 		{
+			Network net;
+			while (true)
+			{
+				try
+				{
+					string strn = Console.ReadLine();
+					string strm = Console.ReadLine();
 
-			Network net = new Network(7,7);
-			Console.WriteLine(net.ToString());
-			net.RandomGenerate();
-			Console.WriteLine(net.ToString());
-
+					net = new Network(int.Parse(strn), int.Parse(strm));
+					net.RandomGenerate();
+					Console.WriteLine(net.ToString());
+				}
+				catch (InvalidParamException e)
+				{
+					Console.WriteLine("城市数为{0}时，m的范围为[{1},{2}]", e.n,e.mLower,e.mUpper);
+				}
+			}
 		}
+
+
 	}
 }

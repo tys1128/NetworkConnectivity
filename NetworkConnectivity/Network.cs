@@ -34,7 +34,7 @@ namespace NetworkConnectivity
 		{
 			if (n <= 0 || m < 0 || m < n - 1 || m > n * (n - 1) / 2)
 			{
-				throw new InvalidParamException("传入的参数不能生成网络");
+				throw new InvalidParamException(n,(n-1), n * (n - 1) / 2);
 			}
 			cityNum = n;
 			lineNum = m;
@@ -43,9 +43,7 @@ namespace NetworkConnectivity
 			{
 				net.Add(new List<int>(Enumerable.Repeat(0, n)));
 			}
-			//net = new List<List<int>>(
-			//	Enumerable.Repeat(new List<int>(Enumerable.Repeat(0, n)), n)
-			//);
+			//net = new List<List<int>>(Enumerable.Repeat(new List<int>(Enumerable.Repeat(0, n)), n));
 		}
 
 		/// <summary>
@@ -95,7 +93,7 @@ namespace NetworkConnectivity
 		}
 
 		/// <summary>
-		/// 控制台输出邻接矩阵
+		/// 生成邻接矩阵的字符串形式
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()
