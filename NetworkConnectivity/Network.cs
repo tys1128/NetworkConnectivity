@@ -13,6 +13,8 @@ namespace NetworkConnectivity
 		int cityNum;
 		int lineNum;
 
+		public List<List<int>> Net { get => net; set => net = value; }
+
 		/// <summary>
 		/// 按照大小初始化net
 		/// </summary>
@@ -22,8 +24,6 @@ namespace NetworkConnectivity
 		{
 			InitNetwork(n, m);
 		}
-
-		public List<List<int>> Net { get => net; set => net = value; }
 
 		/// <summary>
 		/// 按照大小初始化net
@@ -43,7 +43,6 @@ namespace NetworkConnectivity
 			{
 				net.Add(new List<int>(Enumerable.Repeat(0, n)));
 			}
-			//net = new List<List<int>>(Enumerable.Repeat(new List<int>(Enumerable.Repeat(0, n)), n));
 		}
 
 		/// <summary>

@@ -30,18 +30,20 @@
         {
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.label2 = new System.Windows.Forms.Label();
+			this.lable1 = new System.Windows.Forms.Label();
+			this.textBoxLineNum = new System.Windows.Forms.TextBox();
+			this.textBoxCityNum = new System.Windows.Forms.TextBox();
 			this.startGenerateButton = new System.Windows.Forms.Button();
 			this.generateNetwork2Button = new System.Windows.Forms.Button();
 			this.tellDependablility1Button = new System.Windows.Forms.Button();
 			this.equipSwitchButton1 = new System.Windows.Forms.Button();
 			this.equipSwitchButton2 = new System.Windows.Forms.Button();
-			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-			this.lable1 = new System.Windows.Forms.Label();
-			this.textBoxCityNum = new System.Windows.Forms.TextBox();
-			this.textBoxLineNum = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
+			this.warningLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.flowLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -63,7 +65,9 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.warningLabel);
 			this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
 			this.splitContainer1.Size = new System.Drawing.Size(637, 468);
 			this.splitContainer1.SplitterDistance = 210;
 			this.splitContainer1.TabIndex = 0;
@@ -83,6 +87,61 @@
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(186, 444);
 			this.flowLayoutPanel1.TabIndex = 0;
+			this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
+			// 
+			// splitContainer2
+			// 
+			this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+			this.splitContainer2.Name = "splitContainer2";
+			this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			// 
+			// splitContainer2.Panel1
+			// 
+			this.splitContainer2.Panel1.Controls.Add(this.label2);
+			this.splitContainer2.Panel1.Controls.Add(this.lable1);
+			this.splitContainer2.Panel1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.splitContainer2.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel1_Paint);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this.splitContainer2.Panel2.Controls.Add(this.textBoxLineNum);
+			this.splitContainer2.Panel2.Controls.Add(this.textBoxCityNum);
+			this.splitContainer2.Size = new System.Drawing.Size(180, 69);
+			this.splitContainer2.SplitterDistance = 27;
+			this.splitContainer2.TabIndex = 5;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(97, 0);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(65, 20);
+			this.label2.TabIndex = 1;
+			this.label2.Text = "线路数：";
+			// 
+			// lable1
+			// 
+			this.lable1.AutoSize = true;
+			this.lable1.Location = new System.Drawing.Point(3, 0);
+			this.lable1.Name = "lable1";
+			this.lable1.Size = new System.Drawing.Size(65, 20);
+			this.lable1.TabIndex = 0;
+			this.lable1.Text = "城市数：";
+			// 
+			// textBoxLineNum
+			// 
+			this.textBoxLineNum.Location = new System.Drawing.Point(101, 3);
+			this.textBoxLineNum.Name = "textBoxLineNum";
+			this.textBoxLineNum.Size = new System.Drawing.Size(76, 29);
+			this.textBoxLineNum.TabIndex = 1;
+			this.textBoxLineNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxLineNum_KeyDown);
+			// 
+			// textBoxCityNum
+			// 
+			this.textBoxCityNum.Location = new System.Drawing.Point(3, 3);
+			this.textBoxCityNum.Name = "textBoxCityNum";
+			this.textBoxCityNum.Size = new System.Drawing.Size(76, 29);
+			this.textBoxCityNum.TabIndex = 0;
 			// 
 			// startGenerateButton
 			// 
@@ -134,58 +193,14 @@
 			this.equipSwitchButton2.UseVisualStyleBackColor = true;
 			this.equipSwitchButton2.Click += new System.EventHandler(this.equipSwitchButton2_Click);
 			// 
-			// splitContainer2
+			// warningLabel
 			// 
-			this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-			this.splitContainer2.Name = "splitContainer2";
-			this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			// 
-			// splitContainer2.Panel1
-			// 
-			this.splitContainer2.Panel1.Controls.Add(this.label2);
-			this.splitContainer2.Panel1.Controls.Add(this.lable1);
-			this.splitContainer2.Panel1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.splitContainer2.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel1_Paint);
-			// 
-			// splitContainer2.Panel2
-			// 
-			this.splitContainer2.Panel2.Controls.Add(this.textBoxLineNum);
-			this.splitContainer2.Panel2.Controls.Add(this.textBoxCityNum);
-			this.splitContainer2.Size = new System.Drawing.Size(180, 69);
-			this.splitContainer2.SplitterDistance = 27;
-			this.splitContainer2.TabIndex = 5;
-			// 
-			// lable1
-			// 
-			this.lable1.AutoSize = true;
-			this.lable1.Location = new System.Drawing.Point(3, 0);
-			this.lable1.Name = "lable1";
-			this.lable1.Size = new System.Drawing.Size(65, 20);
-			this.lable1.TabIndex = 0;
-			this.lable1.Text = "城市数：";
-			// 
-			// textBoxCityNum
-			// 
-			this.textBoxCityNum.Location = new System.Drawing.Point(3, 3);
-			this.textBoxCityNum.Name = "textBoxCityNum";
-			this.textBoxCityNum.Size = new System.Drawing.Size(76, 29);
-			this.textBoxCityNum.TabIndex = 0;
-			// 
-			// textBoxLineNum
-			// 
-			this.textBoxLineNum.Location = new System.Drawing.Point(101, 3);
-			this.textBoxLineNum.Name = "textBoxLineNum";
-			this.textBoxLineNum.Size = new System.Drawing.Size(76, 29);
-			this.textBoxLineNum.TabIndex = 1;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(97, 0);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(65, 20);
-			this.label2.TabIndex = 1;
-			this.label2.Text = "线路数：";
+			this.warningLabel.AutoSize = true;
+			this.warningLabel.Location = new System.Drawing.Point(20, 119);
+			this.warningLabel.Name = "warningLabel";
+			this.warningLabel.Size = new System.Drawing.Size(25, 21);
+			this.warningLabel.TabIndex = 6;
+			this.warningLabel.Text = "   ";
 			// 
 			// Form1
 			// 
@@ -198,6 +213,8 @@
 			this.Text = "Form1";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.flowLayoutPanel1.ResumeLayout(false);
@@ -225,6 +242,7 @@
 		private System.Windows.Forms.TextBox textBoxLineNum;
 		private System.Windows.Forms.TextBox textBoxCityNum;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label warningLabel;
 	}
 }
 
