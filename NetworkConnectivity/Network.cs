@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace NetworkConnectivity
 {
-
 	public class Network
 	{
 		List<List<int>> net;
@@ -91,6 +90,8 @@ namespace NetworkConnectivity
 
 		}
 
+
+
 		/// <summary>
 		/// 生成邻接矩阵的字符串形式
 		/// </summary>
@@ -109,7 +110,5 @@ namespace NetworkConnectivity
 			}
 			return matrix;
 		}
-
-
 	}
 }

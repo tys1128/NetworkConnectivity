@@ -31,8 +31,8 @@ namespace NetworkConnectivity
 		/// </summary>
 		private void InitButtonAndText()
 		{
-			//textBoxCityNum.Text = "7";
-			//textBoxLineNum.Text = "15";
+			textBoxCityNum.Text = "7";
+			textBoxLineNum.Text = "15";
 			startGenerateButton.Enabled = true;
 			generateNetwork2Button.Enabled = false;
 			tellDependablility1Button.Enabled = false;
@@ -52,11 +52,11 @@ namespace NetworkConnectivity
 
 			Point stPoint = new Point(80, 80);
 			Point endPoint = new Point(160, 160);
-			g.FillEllipse(Brushes.YellowGreen, 12, 12, 12, 12);
+			g.FillEllipse(Brushes.Black, 12, 12, 8, 8);
 			//g.DrawLine(skyBluePen, stPoint, endPoint);
 
+			pointPen.Dispose();
 			linePen.Dispose();
-
 		}
 
 
