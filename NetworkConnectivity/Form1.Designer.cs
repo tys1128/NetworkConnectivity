@@ -32,7 +32,7 @@
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.label2 = new System.Windows.Forms.Label();
-			this.lable1 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.textBoxLineNum = new System.Windows.Forms.TextBox();
 			this.textBoxCityNum = new System.Windows.Forms.TextBox();
 			this.startGenerateButton = new System.Windows.Forms.Button();
@@ -65,9 +65,9 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
 			this.splitContainer1.Panel2.Controls.Add(this.warningLabel);
 			this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
 			this.splitContainer1.Size = new System.Drawing.Size(637, 468);
 			this.splitContainer1.SplitterDistance = 210;
 			this.splitContainer1.TabIndex = 0;
@@ -87,7 +87,6 @@
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(186, 444);
 			this.flowLayoutPanel1.TabIndex = 0;
-			this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
 			// 
 			// splitContainer2
 			// 
@@ -98,9 +97,8 @@
 			// splitContainer2.Panel1
 			// 
 			this.splitContainer2.Panel1.Controls.Add(this.label2);
-			this.splitContainer2.Panel1.Controls.Add(this.lable1);
+			this.splitContainer2.Panel1.Controls.Add(this.label1);
 			this.splitContainer2.Panel1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.splitContainer2.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel1_Paint);
 			// 
 			// splitContainer2.Panel2
 			// 
@@ -121,12 +119,12 @@
 			// 
 			// lable1
 			// 
-			this.lable1.AutoSize = true;
-			this.lable1.Location = new System.Drawing.Point(3, 0);
-			this.lable1.Name = "lable1";
-			this.lable1.Size = new System.Drawing.Size(65, 20);
-			this.lable1.TabIndex = 0;
-			this.lable1.Text = "城市数：";
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(3, 0);
+			this.label1.Name = "lable1";
+			this.label1.Size = new System.Drawing.Size(65, 20);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "城市数：";
 			// 
 			// textBoxLineNum
 			// 
@@ -148,7 +146,7 @@
 			this.startGenerateButton.Location = new System.Drawing.Point(3, 78);
 			this.startGenerateButton.Name = "startGenerateButton";
 			this.startGenerateButton.Size = new System.Drawing.Size(180, 78);
-			this.startGenerateButton.TabIndex = 0;
+			this.startGenerateButton.TabIndex = 1;
 			this.startGenerateButton.Text = "生成网络①";
 			this.startGenerateButton.UseVisualStyleBackColor = true;
 			this.startGenerateButton.Click += new System.EventHandler(this.startGenerateButton_Click);
@@ -238,7 +236,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button equipSwitchButton2;
 		private System.Windows.Forms.SplitContainer splitContainer2;
-		private System.Windows.Forms.Label lable1;
+		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox textBoxLineNum;
 		private System.Windows.Forms.TextBox textBoxCityNum;
 		private System.Windows.Forms.Label label2;

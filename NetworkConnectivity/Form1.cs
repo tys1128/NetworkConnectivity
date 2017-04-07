@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,24 @@ namespace NetworkConnectivity
 			equipSwitchButton2.Enabled = false;
 			warningLabel.Visible = false;
 		}
+		/// <summary>
+		/// 绘制网络
+		/// </summary>
+		/// <param name="g"></param>
+		/// <param name="net"></param>
+		private void DrawNet(Graphics g,Network net)
+		{
+			Pen pointPen = new Pen(Brushes.Yellow) { Width = 6, LineJoin = LineJoin.Round };
+			Pen linePen = new Pen(Brushes.DeepSkyBlue) { Width = 2, LineJoin = LineJoin.Bevel };
+
+			Point stPoint = new Point(80, 80);
+			Point endPoint = new Point(160, 160);
+			g.FillEllipse(Brushes.YellowGreen, 12, 12, 12, 12);
+			//g.DrawLine(skyBluePen, stPoint, endPoint);
+
+			linePen.Dispose();
+
+		}
 
 
 
@@ -49,7 +68,6 @@ namespace NetworkConnectivity
 
 		private void startGenerateButton_Click(object sender, EventArgs e)
 		{
-			InitButtonAndText();
 			try
 			{
 				net1 = new Network(int.Parse(textBoxCityNum.Text), int.Parse(textBoxLineNum.Text));
@@ -64,12 +82,14 @@ namespace NetworkConnectivity
 			}
 			catch (FormatException)
 			{
+				InitButtonAndText();
 				warningLabel.Text = "未输入数据";
 				warningLabel.Visible = true;
 				return;
 			}
 
-			//warningLabel.Visible = false;
+			DrawNet(splitContainer1.Panel2.CreateGraphics(),net1);
+
 			generateNetwork2Button.Enabled = true;
 			tellDependablility1Button.Enabled = true;
 			equipSwitchButton1.Enabled = true;
@@ -97,41 +117,7 @@ namespace NetworkConnectivity
 
 		}
 
-		private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
-		{
 
-		}
-
-		private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-		{
-			//InitButtonAndText();
-		}
-
-		private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-		{
-			Graphics g;
-			// Sets g to a graphics object representing the drawing surface of the
-			// control or form g is a member of.
-			g = splitContainer1.Panel2.CreateGraphics();
-
-			// Create a new pen.
-			Pen skyBluePen = new Pen(Brushes.DeepSkyBlue)
-			{
-
-				// Set the pen's width.
-				Width = 8.0F,
-
-				// Set the LineJoin property.
-				LineJoin = System.Drawing.Drawing2D.LineJoin.Bevel
-			};
-
-			// Draw a rectangle.
-			e.Graphics.DrawRectangle(skyBluePen, new Rectangle(40, 40, 150, 200));
-
-			//Dispose of the pen.
-			skyBluePen.Dispose();
-
-		}
 
 		private void textBoxLineNum_KeyDown(object sender, KeyEventArgs e)
 		{
