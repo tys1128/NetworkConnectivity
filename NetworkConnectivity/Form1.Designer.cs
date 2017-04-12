@@ -40,7 +40,9 @@
 			this.tellDependablility1Button = new System.Windows.Forms.Button();
 			this.equipSwitchButton1 = new System.Windows.Forms.Button();
 			this.equipSwitchButton2 = new System.Windows.Forms.Button();
+			this.labelTellReliability = new System.Windows.Forms.Label();
 			this.warningLabel = new System.Windows.Forms.Label();
+			this.displayNet1Button = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -66,26 +68,27 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
+			this.splitContainer1.Panel2.Controls.Add(this.labelTellReliability);
 			this.splitContainer1.Panel2.Controls.Add(this.warningLabel);
 			this.splitContainer1.Panel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.splitContainer1.Size = new System.Drawing.Size(637, 468);
-			this.splitContainer1.SplitterDistance = 210;
+			this.splitContainer1.Size = new System.Drawing.Size(637, 523);
+			this.splitContainer1.SplitterDistance = 209;
 			this.splitContainer1.TabIndex = 0;
 			// 
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
 			this.flowLayoutPanel1.Controls.Add(this.splitContainer2);
-			this.flowLayoutPanel1.Controls.Add(this.startGenerateButton);
 			this.flowLayoutPanel1.Controls.Add(this.generateNetwork2Button);
 			this.flowLayoutPanel1.Controls.Add(this.tellDependablility1Button);
 			this.flowLayoutPanel1.Controls.Add(this.equipSwitchButton1);
 			this.flowLayoutPanel1.Controls.Add(this.equipSwitchButton2);
+			this.flowLayoutPanel1.Controls.Add(this.displayNet1Button);
 			this.flowLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Arrow;
 			this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(186, 444);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(186, 545);
 			this.flowLayoutPanel1.TabIndex = 0;
 			// 
 			// splitContainer2
@@ -102,10 +105,11 @@
 			// 
 			// splitContainer2.Panel2
 			// 
+			this.splitContainer2.Panel2.Controls.Add(this.startGenerateButton);
 			this.splitContainer2.Panel2.Controls.Add(this.textBoxLineNum);
 			this.splitContainer2.Panel2.Controls.Add(this.textBoxCityNum);
-			this.splitContainer2.Size = new System.Drawing.Size(180, 69);
-			this.splitContainer2.SplitterDistance = 27;
+			this.splitContainer2.Size = new System.Drawing.Size(180, 165);
+			this.splitContainer2.SplitterDistance = 25;
 			this.splitContainer2.TabIndex = 5;
 			// 
 			// label2
@@ -117,11 +121,11 @@
 			this.label2.TabIndex = 1;
 			this.label2.Text = "线路数：";
 			// 
-			// lable1
+			// label1
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(3, 0);
-			this.label1.Name = "lable1";
+			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(65, 20);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "城市数：";
@@ -132,6 +136,7 @@
 			this.textBoxLineNum.Name = "textBoxLineNum";
 			this.textBoxLineNum.Size = new System.Drawing.Size(76, 29);
 			this.textBoxLineNum.TabIndex = 1;
+			this.textBoxLineNum.TextChanged += new System.EventHandler(this.textBoxLineNum_TextChanged);
 			this.textBoxLineNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxLineNum_KeyDown);
 			// 
 			// textBoxCityNum
@@ -143,9 +148,9 @@
 			// 
 			// startGenerateButton
 			// 
-			this.startGenerateButton.Location = new System.Drawing.Point(3, 78);
+			this.startGenerateButton.Location = new System.Drawing.Point(0, 38);
 			this.startGenerateButton.Name = "startGenerateButton";
-			this.startGenerateButton.Size = new System.Drawing.Size(180, 78);
+			this.startGenerateButton.Size = new System.Drawing.Size(180, 80);
 			this.startGenerateButton.TabIndex = 1;
 			this.startGenerateButton.Text = "生成网络①";
 			this.startGenerateButton.UseVisualStyleBackColor = true;
@@ -153,17 +158,17 @@
 			// 
 			// generateNetwork2Button
 			// 
-			this.generateNetwork2Button.Location = new System.Drawing.Point(3, 162);
+			this.generateNetwork2Button.Location = new System.Drawing.Point(3, 174);
 			this.generateNetwork2Button.Name = "generateNetwork2Button";
 			this.generateNetwork2Button.Size = new System.Drawing.Size(180, 54);
 			this.generateNetwork2Button.TabIndex = 2;
-			this.generateNetwork2Button.Text = "去除①中的冗余线路生成②";
+			this.generateNetwork2Button.Text = "显示去除①中的冗余线路生成的网络②";
 			this.generateNetwork2Button.UseVisualStyleBackColor = true;
 			this.generateNetwork2Button.Click += new System.EventHandler(this.generateNetwork2Button_Click);
 			// 
 			// tellDependablility1Button
 			// 
-			this.tellDependablility1Button.Location = new System.Drawing.Point(3, 222);
+			this.tellDependablility1Button.Location = new System.Drawing.Point(3, 234);
 			this.tellDependablility1Button.Name = "tellDependablility1Button";
 			this.tellDependablility1Button.Size = new System.Drawing.Size(180, 54);
 			this.tellDependablility1Button.TabIndex = 1;
@@ -173,7 +178,7 @@
 			// 
 			// equipSwitchButton1
 			// 
-			this.equipSwitchButton1.Location = new System.Drawing.Point(3, 282);
+			this.equipSwitchButton1.Location = new System.Drawing.Point(3, 294);
 			this.equipSwitchButton1.Name = "equipSwitchButton1";
 			this.equipSwitchButton1.Size = new System.Drawing.Size(180, 54);
 			this.equipSwitchButton1.TabIndex = 3;
@@ -183,13 +188,22 @@
 			// 
 			// equipSwitchButton2
 			// 
-			this.equipSwitchButton2.Location = new System.Drawing.Point(3, 342);
+			this.equipSwitchButton2.Location = new System.Drawing.Point(3, 354);
 			this.equipSwitchButton2.Name = "equipSwitchButton2";
 			this.equipSwitchButton2.Size = new System.Drawing.Size(180, 54);
 			this.equipSwitchButton2.TabIndex = 4;
 			this.equipSwitchButton2.Text = "为②配备交换机";
 			this.equipSwitchButton2.UseVisualStyleBackColor = true;
 			this.equipSwitchButton2.Click += new System.EventHandler(this.equipSwitchButton2_Click);
+			// 
+			// labelTellReliability
+			// 
+			this.labelTellReliability.AutoSize = true;
+			this.labelTellReliability.Location = new System.Drawing.Point(1, 392);
+			this.labelTellReliability.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.labelTellReliability.Name = "labelTellReliability";
+			this.labelTellReliability.Size = new System.Drawing.Size(0, 21);
+			this.labelTellReliability.TabIndex = 7;
 			// 
 			// warningLabel
 			// 
@@ -200,15 +214,25 @@
 			this.warningLabel.TabIndex = 6;
 			this.warningLabel.Text = "   ";
 			// 
+			// displayNet1Button
+			// 
+			this.displayNet1Button.Location = new System.Drawing.Point(3, 414);
+			this.displayNet1Button.Name = "displayNet1Button";
+			this.displayNet1Button.Size = new System.Drawing.Size(180, 54);
+			this.displayNet1Button.TabIndex = 6;
+			this.displayNet1Button.Text = "显示网络①";
+			this.displayNet1Button.UseVisualStyleBackColor = true;
+			this.displayNet1Button.Click += new System.EventHandler(this.displayNet1Button_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
-			this.ClientSize = new System.Drawing.Size(637, 468);
+			this.ClientSize = new System.Drawing.Size(637, 523);
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Text = "Network Connectivity";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
@@ -241,6 +265,8 @@
 		private System.Windows.Forms.TextBox textBoxCityNum;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label warningLabel;
+        private System.Windows.Forms.Label labelTellReliability;
+		private System.Windows.Forms.Button displayNet1Button;
 	}
 }
 

@@ -11,143 +11,180 @@ using System.Windows.Forms;
 
 namespace NetworkConnectivity
 {
-	//delegate void InitializeButtonDel();
-	//InitializeButtonDel firstInit+=()=>startGenerateButton.Enabled = true;
+    public partial class Form1 : Form
+    {
+		string defaultCityNum = "3";
+		string defaultLineNum = "3";
 
-	public partial class Form1 : Form
-	{
-		Network net1;
-		Network net2;
-		Graphics graph;
+		DrawNet drawNet1;
+        DrawNet drawNet2;
+        Graphics graph;
 
-		public Form1()
+        public Form1()
+        {
+            InitializeComponent();
+            graph = splitContainer1.Panel2.CreateGraphics();
+        }
+
+
+        /// <summary>
+        /// 初始化按钮/图像/文本
+        /// </summary>
+        void InitFormItem()
+        {
+            startGenerateButton.Enabled = true;
+			displayNet1Button.Enabled = false;
+            generateNetwork2Button.Enabled = false;
+            tellDependablility1Button.Enabled = false;
+            equipSwitchButton1.Enabled = false;
+            equipSwitchButton2.Enabled = false;
+            warningLabel.Visible = false;
+
+			graph.Clear(Color.White);
+        }
+		void InitText()
 		{
-			InitializeComponent();
-			graph = splitContainer1.Panel2.CreateGraphics();
-		}
-
-
-
-		/// <summary>
-		/// 初始化按钮/图像
-		/// </summary>
-		void InitButtonAndGraphics()
-		{
-			startGenerateButton.Enabled = true;
-			generateNetwork2Button.Enabled = false;
-			tellDependablility1Button.Enabled = false;
-			equipSwitchButton1.Enabled = false;
-			equipSwitchButton2.Enabled = false;
-			warningLabel.Visible = false;
-		}
-		/// <summary>
-		/// 绘制网络
-		/// </summary>
-		/// <param name="g"></param>
-		/// <param name="net"></param>
-		void DrawNet(Graphics g, Network net)
-		{
-			Pen pointPen = new Pen(Brushes.Yellow) { Width = 6, LineJoin = LineJoin.Round };
-			Pen linePen = new Pen(Brushes.DeepSkyBlue) { Width = 2, LineJoin = LineJoin.Bevel };
-			const int r = 180;//radius
-			const double pi = Math.PI;
-
-			Point center = new Point(200, 200);
-			List<Point> surround = new List<Point>();
-			for (int i = 0; i < 12; i++)
-			{
-				int x = center.X + (int)(r * Math.Cos(i * pi / 6));
-				int y = center.Y + (int)(r * Math.Sin(i * pi / 6));
-				surround.Add(new Point(x, y));
-			}
-
-			for (int i = 0; i < surround.Count; i++)
-			{
-				////Point temp = new Point(x, y);
-				////surround[i].Offset(temp);
-				//surround[i].X += x;
-				//surround[i].Y += y;
-				g.FillEllipse(Brushes.Black, surround[i].X, surround[i].Y, 8, 8);
-			}
-
-			//g.DrawLine(skyBluePen, stPoint, endPoint);
-
-			pointPen.Dispose();
-			linePen.Dispose();
+			labelTellReliability.Visible = false;
 		}
 
 
 
 		private void Form1_Load(object sender, EventArgs e)
-		{
-			InitButtonAndGraphics();
-			textBoxCityNum.Text = "7";
-			textBoxLineNum.Text = "15";
+        {
+            InitFormItem();
+			InitText();
+			textBoxCityNum.Text = defaultCityNum;
+            textBoxLineNum.Text = defaultLineNum;
+        }
 
-		}
-
-		private void startGenerateButton_Click(object sender, EventArgs e)
-		{
-			InitButtonAndGraphics();
+        private void startGenerateButton_Click(object sender, EventArgs e)
+        {
+            InitFormItem();
+			InitText();
 
 			try
 			{
-				net1 = new Network(int.Parse(textBoxCityNum.Text), int.Parse(textBoxLineNum.Text));
-			}
-			catch (InvalidParamException excp)
-			{
-				InitButtonAndGraphics();
-				textBoxCityNum.Text = excp.n.ToString();
-				warningLabel.Text = string.Format("城市数为{0}时，m的范围应为[{1},{2}]", excp.n, excp.mLower, excp.mUpper);
-				warningLabel.Visible = true;
-				return;
-			}
-			catch (FormatException)
-			{
-				InitButtonAndGraphics();
-				warningLabel.Text = "未输入数据";
-				warningLabel.Visible = true;
-				return;
-			}
+				drawNet1 = new DrawNet(graph, new Network(int.Parse(textBoxCityNum.Text), int.Parse(textBoxLineNum.Text)));
+            }
+            catch (InvalidParamException excp)
+            {
+                InitFormItem();
 
-			DrawNet(graph, net1);
+                textBoxCityNum.Text = excp.n.ToString();
+                warningLabel.Text = string.Format("城市数为{0}时，m的范围应为[{1},{2}]", excp.n, excp.mLower, excp.mUpper);
+                warningLabel.Visible = true;
+                return;
+            }
+            catch (FormatException)
+            {
+                InitFormItem();
+                warningLabel.Text = "请输入数据（使用阿拉伯数字）";
+                warningLabel.Visible = true;
+                return;
+            }
 
-			generateNetwork2Button.Enabled = true;
-			tellDependablility1Button.Enabled = true;
-			equipSwitchButton1.Enabled = true;
-			equipSwitchButton2.Enabled = false;
+			drawNet1.DrawNormalGraphic();
+
+			displayNet1Button.Enabled = true;
+            generateNetwork2Button.Enabled = true;
+            tellDependablility1Button.Enabled = true;
+            equipSwitchButton1.Enabled = true;
+            equipSwitchButton2.Enabled = false;
+        }
+
+		private void displayNet1Button_Click(object sender, EventArgs e)
+		{
+			drawNet1.DrawNormalGraphic();
 		}
 
 		private void generateNetwork2Button_Click(object sender, EventArgs e)
-		{
+        {
+			InitText();
 
+            drawNet2 = new DrawNet(drawNet1);
+            foreach (var pair in drawNet2.Net.GetLineList())
+            {
+                //删掉一条边
+                drawNet2.Net.Net[pair.Key][pair.Value] = 0;
+                drawNet2.Net.Net[pair.Value][pair.Key] = 0;
 
-			equipSwitchButton2.Enabled = true;
-		}
+                //判断是否联通
+                if (drawNet2.Net.IsConnected() == false)
+                {
+                    //如果不联通 ,//恢复边
+                    drawNet2.Net.Net[pair.Key][pair.Value] = 1;
+                    drawNet2.Net.Net[pair.Value][pair.Key] = 1;
+                }
+            }
+            drawNet2.DrawNormalGraphic();
 
-		private void tellDependablility1Button_Click(object sender, EventArgs e)
-		{
+            equipSwitchButton2.Enabled = true;
+        }
 
-		}
+        private void tellDependablility1Button_Click(object sender, EventArgs e)
+        {
+			InitText();
 
-		private void equipSwitchButton1_Click(object sender, EventArgs e)
-		{
+			List<KeyValuePair<int, int>> inDependentList = new List<KeyValuePair<int, int>>();
+			DrawNet tDrawNet = new DrawNet(drawNet1);
+			Network tNet = drawNet1.Net;
+
+            var list = tNet.GetLineList();
+            foreach (var pair in list)
+            {
+                //删掉一条边
+                tNet.Net[pair.Key][pair.Value] = 0;
+                tNet.Net[pair.Value][pair.Key] = 0;
+
+                //判断是否联通
+                if (tNet.IsConnected() == false)
+                {
+                    //如果不联通，记录
+                    inDependentList.Add(pair);
+                }
+                //恢复边
+                tNet.Net[pair.Key][pair.Value] = 1;
+                tNet.Net[pair.Value][pair.Key] = 1;
+            }
+
+			tDrawNet.DrawHighLightLineGraphic(inDependentList);
+			labelTellReliability.Visible = true;
+            if (inDependentList.Count == 0)
+            {
+                labelTellReliability.Text = "该网络是可靠网络";
+            }
+            else
+            {
+                labelTellReliability.Text = "该网络不是可靠网络";
+            }
+        }
+
+        private void equipSwitchButton1_Click(object sender, EventArgs e)
+        {
+			InitText();
 
 		}
 
 		private void equipSwitchButton2_Click(object sender, EventArgs e)
-		{
+        {
+			InitText();
 
 		}
 
 
 
 		private void textBoxLineNum_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Enter)
-			{
-				startGenerateButton_Click(sender, e);
-			}
-		}
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                startGenerateButton_Click(sender, e);
+            }
+        }
+
+        private void textBoxLineNum_TextChanged(object sender, EventArgs e)
+        {
+            InitFormItem();
+        }
+
 	}
 }

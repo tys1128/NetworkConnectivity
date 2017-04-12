@@ -1,0 +1,115 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NetworkConnectivity
+{
+	class DrawNet
+	{
+		Graphics g;
+		Network net;
+		Point center = new Point(200, 200);
+		List<Point> surround;
+		int radius = 180;
+		int ptSize = 9;
+		const double pi = Math.PI;
+		Pen linePen = new Pen(Brushes.DeepSkyBlue) { Width = 2, LineJoin = LineJoin.Bevel };
+		Pen highLightPen = new Pen(Brushes.Red) { Width = 2, LineJoin = LineJoin.Bevel };
+		Brush pointBrush = Brushes.LightGreen;
+		Brush highLightPointBrush = Brushes.Yellow;
+
+		public Point Center { get => center; }
+		public List<Point> Surround { get => surround; }
+		public int Radius { get => radius; }
+		public int PtSize { get => ptSize; }
+		public Network Net { get => net; }
+
+		/// <summary>
+		/// 初始化图
+		/// </summary>
+		/// <param name="g"></param>
+		/// <param name="net">要绘制的图</param>
+		public DrawNet(Graphics g,Network net)
+		{
+			this.g = g;
+			this.net = net;
+			Init(g, net);
+		}
+		public DrawNet(DrawNet other)
+		{
+			g = other.g;
+			net = new Network(other.net);
+			Init(g, net);
+		}
+		public void Init(Graphics g, Network net)
+		{
+			int n = net.CityNum;
+			surround = new List<Point>(n);
+			for (int i = 0; i < n; i++)
+			{
+				int x = center.X + (int)(radius * Math.Cos(i * 2 * pi / n));
+				int y = center.Y + (int)(radius * Math.Sin(i * 2 * pi / n));
+				surround.Add(new Point(x, y));
+			}
+		}
+
+
+
+		/// <summary>
+		/// 绘制线
+		/// </summary>
+		/// <param name="lineList">存储线的两端点的列表</param>
+		/// <param name="linePen">用于画线</param>
+		public void PrintLine(List<KeyValuePair<int,int>> lineList,Pen linePen)
+		{
+			foreach (var pt in lineList)
+			{
+				g.DrawLine(linePen, surround[pt.Key], surround[pt.Value]);
+			}
+		}
+		/// <summary>
+		/// 绘制点
+		/// </summary>
+		/// <param name="pointList">存放点的表</param>
+		/// <param name="brush">点的颜色</param>
+		/// <param name="ptSize">点的大小</param>
+		public void PrintPoint(List<Point> pointList, Brush brush, int ptSize)
+		{
+			foreach (Point pt in pointList)
+			{
+				g.FillEllipse(brush, pt.X - ptSize / 2, pt.Y - ptSize / 2, ptSize, ptSize);
+			}
+		}
+
+
+
+		/// <summary>
+		/// 绘制当前网络的普通图像
+		/// </summary>
+		public void DrawNormalGraphic()
+		{
+			g.Clear(Color.White);
+
+			//绘制线路与点
+			PrintLine(net.GetLineList(), linePen);
+			PrintPoint(surround, pointBrush, ptSize);
+		}
+		/// <summary>
+		/// 绘制突出显示的线
+		/// </summary>
+		/// <param name="HighLightLineList"></param>
+		public void DrawHighLightLineGraphic(List<KeyValuePair<int, int>> HighLightLineList)
+		{
+			g.Clear(Color.White);
+
+			//绘制线路与点
+			PrintLine(net.GetLineList(), linePen);
+			PrintLine(HighLightLineList, highLightPen);
+			PrintPoint(surround, pointBrush, ptSize);
+		}
+	}
+}
