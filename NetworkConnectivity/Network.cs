@@ -226,6 +226,7 @@ namespace NetworkConnectivity
 		}
 		public void Save(string path)
 		{
+
 			FileStream fs = new FileStream(path, FileMode.Create);
 			StreamWriter sw = new StreamWriter(fs);
 			sw.Write(this.ToString());

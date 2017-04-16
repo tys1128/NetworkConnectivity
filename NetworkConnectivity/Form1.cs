@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace NetworkConnectivity
@@ -128,12 +129,34 @@ namespace NetworkConnectivity
 
 		private void saveNetworkButton_Click(object sender, EventArgs e)
 		{
-			FolderBrowserDialog path = new FolderBrowserDialog();
-			if (path.ShowDialog() == DialogResult.OK) 
+			SaveFileDialog sfDialog = new SaveFileDialog {
+				Filter = "文本文件(*.txt)|*.txt",
+				RestoreDirectory = true,
+				Title="保存网络①",
+				FileName="Net1.txt",
+			};
+
+			if (sfDialog.ShowDialog() == DialogResult.OK)
 			{
-				drawNet1.Net.Save(path.SelectedPath + @"\Net1.txt");
-				drawNet2.Net.Save(path.SelectedPath + @"\Net2.txt");
-				MessageBox.Show("保存成功!");
+				FileStream fs = new FileStream(sfDialog.FileName, FileMode.Create);
+				StreamWriter sw = new StreamWriter(fs);
+				sw.Write(drawNet1.Net.ToString());
+
+				sw.Flush();
+				sw.Close();
+				fs.Close();
+			}
+			sfDialog.Title = "保存网络②";
+			sfDialog.FileName = "Net2.txt";
+			if (sfDialog.ShowDialog() == DialogResult.OK)
+			{
+				FileStream fs = new FileStream(sfDialog.FileName, FileMode.Create);
+				StreamWriter sw = new StreamWriter(fs);
+				sw.Write(drawNet2.Net.ToString());
+
+				sw.Flush();
+				sw.Close();
+				fs.Close();
 			}
 		}
 
