@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NetworkConnectivity
 {
+	/// <summary>
+	/// 捆绑了Graphics和Network
+	/// </summary>
 	class DrawNet
 	{
 		Graphics g;
@@ -18,7 +18,7 @@ namespace NetworkConnectivity
 		int ptSize = 9;
 		const double pi = Math.PI;
 		Pen linePen = new Pen(Brushes.DeepSkyBlue) { Width = 2, LineJoin = LineJoin.Bevel };
-		Pen highLightPen = new Pen(Brushes.Red) { Width = 2, LineJoin = LineJoin.Bevel };
+		Pen highlightPen = new Pen(Brushes.Red) { Width = 2, LineJoin = LineJoin.Bevel };
 		Brush pointBrush = Brushes.LightGreen;
 		Brush highLightPointBrush = Brushes.Yellow;
 
@@ -99,17 +99,31 @@ namespace NetworkConnectivity
 			PrintPoint(surround, pointBrush, ptSize);
 		}
 		/// <summary>
-		/// 绘制突出显示的线
+		/// 绘制突出显示特定线的图
 		/// </summary>
-		/// <param name="HighLightLineList"></param>
-		public void DrawHighLightLineGraphic(List<KeyValuePair<int, int>> HighLightLineList)
+		/// <param name="HighlightLineList"></param>
+		public void DrawHighlightLineGraphic(List<KeyValuePair<int, int>> HighlightLineList)
 		{
 			g.Clear(Color.White);
 
 			//绘制线路与点
 			PrintLine(net.GetLineList(), linePen);
-			PrintLine(HighLightLineList, highLightPen);
+			PrintLine(HighlightLineList, highlightPen);
 			PrintPoint(surround, pointBrush, ptSize);
 		}
+		/// <summary>
+		/// 绘制突出显示特定点的图
+		/// </summary>
+		/// <param name="HighlightLineList"></param>
+		public void DrawHighlightPointGraphic(List<Point> HighlightPointList)
+		{
+			g.Clear(Color.White);
+
+			//绘制线路与点
+			PrintLine(net.GetLineList(), linePen);
+			PrintPoint(surround, pointBrush, ptSize);
+			PrintPoint(HighlightPointList, pointBrush, ptSize);
+		}
+
 	}
 }
