@@ -21,7 +21,7 @@ namespace NetworkConnectivityUnitTest
 
 			Point center = new Point(200, 200);
 			List<Point> surround = new List<Point>(Enumerable.Repeat(center, 12));
-			Assert.AreNotSame(surround[1], surround[2]);
+			Assert.AreNotSame(surround[1], surround[1]);
 		}
 		struct Point
 		{

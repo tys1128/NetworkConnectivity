@@ -141,7 +141,6 @@ namespace NetworkConnectivity
 				FileStream fs = new FileStream(sfDialog.FileName, FileMode.Create);
 				StreamWriter sw = new StreamWriter(fs);
 				sw.Write(drawNet1.Net.ToString());
-
 				sw.Flush();
 				sw.Close();
 				fs.Close();
@@ -153,7 +152,6 @@ namespace NetworkConnectivity
 				FileStream fs = new FileStream(sfDialog.FileName, FileMode.Create);
 				StreamWriter sw = new StreamWriter(fs);
 				sw.Write(drawNet2.Net.ToString());
-
 				sw.Flush();
 				sw.Close();
 				fs.Close();

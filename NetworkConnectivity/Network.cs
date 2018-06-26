@@ -224,17 +224,17 @@ namespace NetworkConnectivity
 			}
 			return matrix;
 		}
-		public void Save(string path)
-		{
+		//public void Save(string path)
+		//{
 
-			FileStream fs = new FileStream(path, FileMode.Create);
-			StreamWriter sw = new StreamWriter(fs);
-			sw.Write(this.ToString());
+		//	FileStream fs = new FileStream(path, FileMode.Create);
+		//	StreamWriter sw = new StreamWriter(fs);
+		//	sw.Write(this.ToString());
 
-			sw.Flush();
-			sw.Close();
-			fs.Close();
-		}
+		//	sw.Flush();
+		//	sw.Close();
+		//	fs.Close();
+		//}
 
 
 	}
